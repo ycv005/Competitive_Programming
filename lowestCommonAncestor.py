@@ -47,7 +47,8 @@ class Node:
 '''
 
 def lca(root, v1, v2):
-#Enter your code here
+#Enter your code here 
+# https://www.hackerrank.com/challenges/binary-search-tree-lowest-common-ancestor/problem
     if root.left!=None and root.right!=None:
         if v1>v2:
             v1,v2=v2,v1
