@@ -15,6 +15,7 @@ def sumList(t):
     return l
 
 def equalStacks(h1, h2, h3):
+    # https://www.hackerrank.com/challenges/equal-stacks/problem
     s1,s2,s3=sumList(h1),sumList(h2),sumList(h3)
 
     if len(h1)==1 or len(h2)==1 or len(h3)==1:
