@@ -13,5 +13,3 @@ for i in a:
         if d[int(i)]>m:
             m = d[int(i)]
 print(n-m)
-
-    
