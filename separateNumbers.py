@@ -12,6 +12,8 @@ def separateNumbers(s):
             tmp = tmp+1
             t+=str(tmp)
             # print("updated-",t)
+            if t!=s[:len(t)]:
+                break
         if t==s:
             flag="YES"
             break
