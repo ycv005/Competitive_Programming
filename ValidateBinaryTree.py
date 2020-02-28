@@ -16,18 +16,22 @@ class Solution(object):
         val = True
         d={0:1}
         is_present = 1
-        # pos_node = 0 
+        pos_node = 0 
         for i in range(n):
             if r[i]!=-1:
                 if check_dic(d,r[i]) == False:
-                    # print("1st false")
+                    print("1st false")
                     return False
             if l[i]!=-1:
                 if check_dic(d,l[i]) == False:
-                    # print("2st false")
+                    print("2st false")
                     return False
-            if is_present not in l and is_present not in r and is_present<n:
-                # print("3st false")
-                return False
-            is_present+=1
+            if l[i]!=-1:
+                pos_node+=1
+            if r[i]!=-1:
+                pos_node+=1
+#           not in dec-order(except -1), is yes then not valid
+        if pos_node<n-1:
+            return False
         return val
+        
