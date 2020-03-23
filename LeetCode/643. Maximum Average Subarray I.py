@@ -6,5 +6,5 @@ class Solution:
         for i in range(k,len(nums)):
             tmpSum = tmpSum - tmp.popleft()+ nums[i]
             tmp.append(nums[i])
-            maxSum = max(maxSum, tmpSum)
+            if tmpSum > maxSum: maxSum = tmpSum
         return maxSum/k
