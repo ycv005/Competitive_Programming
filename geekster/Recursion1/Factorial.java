@@ -5,6 +5,7 @@ public class Factorial {
         Scanner in = new Scanner(System.in);
         int n = in.nextInt();
         System.out.println(getFactorial(n));
+        in.close();
     }
 
     public static int getFactorial(int n) {
