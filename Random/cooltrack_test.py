@@ -19,4 +19,4 @@ for t in range(int(input())):
                 res.append([un, v])
         res.sort(key=lambda x: x[0])
         for r in res:
-            print(r)
+            print(r[0], r[1])

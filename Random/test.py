@@ -1,14 +1,16 @@
-n = int(input())
-l1 = list(map(int, input().split()))
-l2 = list(map(int, input().split()))
-seen = set()
-cm = 0
-for a in l1:
-    seen.add(a)
+for t in range(int(input())):
+    n = int(input())
+    s = input()
+    sm = 0
+    for i, c in enumerate(s):
+        sm += ord(c) - 97
 
-for b in l2:
-    if b in seen:
-        cm = b
-        break
-
-print(cm)
+    while len(str(sm)) != 1:
+        tm = 0
+        n = sm
+        while n >= 1:
+            d = n % 10
+            tm += d
+            n = n//10
+        sm = tm
+    print(chr(sm+97))
