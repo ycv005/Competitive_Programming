@@ -1,30 +1,32 @@
-def doMerge(deq,b):
-    if len(deq)>0:
-        # b will be top of stack, as we are going to add
-        a=deq.pop()
-        if max(b)<min(a): # b is covered by a, so reversing them
-            doMerge(deq,b)
-            deq.append(a)
-        elif a[0]>=b[0] and a[-1]<=b[-1]:   #a is covered by b
-            doMerge(deq,b)
-        elif a[-1]>=b[0]: #good for merge
-            b=[min(a[0],b[0]),max(a[-1],b[-1])]
-            doMerge(deq,b)
-        else: #no-merge
-            deq.append(a)
-            deq.append(b)
-    else: #do the stack is empty, so append b
-        deq.append(b)
+# we have two list, we need to check do they merge or not.
+def isOverlapping(l1, l2):
+    a, b = l1
+    c, d = l2
+    # if a or b are in range of c-d
+    # if c or d are in range of a-b
+    if (c <= a and a <= d) or (c <= b and b <= d) or (a <= c and c <= b) or (a <= d and d <= b):
+        return True
+    return False
+
 
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if len(intervals)<2:
+        if len(intervals) < 2:
             return intervals
-        deq = [] # or use deque([])
-        t=intervals[0]
-        deq.append(t)
-        for i in range(1,len(intervals)):
-            t=intervals[i]
-#           before inserting into the stack, we will try to merge them, else append it.
-            doMerge(deq,t)
-        return deq
+        intervals.sort(key=lambda x: -x[1])
+        # print(intervals)
+        prev = intervals[0]
+        i = 1
+        while i < len(intervals):
+            curr = intervals[i]
+            if isOverlapping(prev, curr):
+                # print("overlap-",prev,curr)
+                intervals[i-1][0] = min(prev[0], curr[0])
+                intervals[i-1][1] = max(prev[1], curr[1])
+                intervals.pop(i)
+
+            else:
+                prev = curr
+                i += 1
+            # print("end of loop-", prev, curr)
+        return intervals
