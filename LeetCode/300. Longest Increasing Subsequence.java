@@ -1,6 +1,6 @@
 class Solution {
     public int lengthOfLIS(int[] arr) {
-        int[] arr = { 10, 22, 9, 3, 21, 50, 41, 60, 80 };
+        // arr = { 10, 22, 9, 3, 21, 50, 41, 60, 80 };
         int[] dp = new int[arr.length];
         Arrays.fill(dp, 1);
 
