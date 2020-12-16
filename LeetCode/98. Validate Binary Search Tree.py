@@ -5,21 +5,19 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    lastElement = "NA"
-    valid = True
+    def __init__(self):
+        self.last_visited_val = float('-inf')
+        self.isValid = True
 
-    def checkValiditiy(self, root):
+    def isValidInorder(self, root):
         if root:
-            self.checkValiditiy(root.left)
-            if self.lastElement == "NA":
-                self.lastElement = root.val
+            self.isValidBST(root.left)
+            if self.isValid and root.val <= self.last_visited_val:
+                self.isValid = False
             else:
-                if self.lastElement >= root.val:
-                    self.valid = False
-                    return
-                self.lastElement = root.val
-            self.checkValiditiy(root.right)
+                self.last_visited_val = root.val
+            self.isValidBST(root.right)
+        return self.isValid
 
     def isValidBST(self, root: TreeNode) -> bool:
-        self.checkValiditiy(root)
-        return self.valid
+        return self.isValidInorder(root, False, False)
