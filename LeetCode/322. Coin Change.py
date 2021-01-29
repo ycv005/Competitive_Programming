@@ -1,16 +1,9 @@
 class Solution:
-    def coinChange(self, coins: List[int], amt: int) -> int:
-        if amt==0: return amt
-        elif amt<=0: return -1
-        mem=[0]*(amt+1)
-        for i in range(1,amt+1):
-            mnCoin = float("inf")
-            for c in coins:
-                t=i-c
-                if t>=0:
-                    currMin = mem[t] +1
-                    if currMin>=0 and mnCoin>currMin:
-                        mnCoin = currMin
-                mem[i]=mnCoin
-        if mnCoin==float("inf"): return -1
-        return mem[amt]
+    def coinChange(self, coins: List[int], amount: int) -> int:
+        dp = [-2] * (amount + 1)
+        dp[0] = 0
+        for c in coins:
+            for i in range(c, amount + 1):
+                dp[i] = min(dp[i], dp[i-c] + 1)
+
+        return -1 if dp[amount] == -1 else dp[amount]
